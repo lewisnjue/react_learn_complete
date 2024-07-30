@@ -1,6 +1,7 @@
 
+import { useState } from 'react';
 import './App.css';
-/* the bellow is a funtional component  
+/*  let title = ` hello this is a props ${props.title} ` the bellow is a funtional component  
 the react compoent can be fuction based or class based 
 
 it is a good ideal to use the funtion based ones  instead 
@@ -21,12 +22,27 @@ the sme output for the same orgument values
 
 */
 
-function App(props) {
-  let title = ` hello this is a props ${props.title} `
-  return (
+function App() {
+  const [name,setname] = useState("");
+  const handlesubmit = (e)=>{
+    e.preventDefault();
+    setname('');
 
-    <h1>{title}</h1>
-    
+    console.log('submited ');
+  }
+  return (
+    <div className='App'>
+      <form onSubmit={handlesubmit}>
+        <fieldset>
+          <div>
+            <label htmlFor='name'>Name: </label>
+            <input type='text' placeholder='name' id='name' name='name' value={name} onChange={(e)=>setname(e.target.value)}
+            />
+            <button type='submit' disabled={!name}>submit</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
   );
 }
 
